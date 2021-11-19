@@ -8,3 +8,8 @@
 8. Run server `python manage.py runserver`
 
 ## reset-password setting
+add Email and Password, Email is lesssecure -> https://myaccount.google.com/lesssecureapps
+```
+EMAIL_HOST_USER = '** eamil **'
+EMAIL_HOST_PASSWORD = '** password email **'
+```

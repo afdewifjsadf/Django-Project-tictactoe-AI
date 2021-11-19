@@ -26,5 +26,7 @@ edit django at `.\django-tictactoe-AI\env\Lib\site-packages\django\contrib\admin
 ```
 ---
 ### Admin
+
 Username: `Admin`
+
 Password: `admin`

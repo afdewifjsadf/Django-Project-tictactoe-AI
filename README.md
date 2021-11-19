@@ -25,7 +25,7 @@ edit django at `.\django-tictactoe-AI\env\Lib\site-packages\django\contrib\admin
 {{ protocol }}://{{ domain }}{% url 'myapp:password_reset_confirm' uidb64=uid token=token %}
 ```
 ---
-### Admin
+#### superuser
 
 Username: `Admin`
 

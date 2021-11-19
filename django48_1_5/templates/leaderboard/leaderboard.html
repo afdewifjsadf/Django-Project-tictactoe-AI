@@ -1,0 +1,51 @@
+{% extends "layouts/base.html" %}
+{% load humanize %}
+
+
+
+{% block content %}
+
+<h1 class="mt-4">Leaderboard</h1>
+<table class="table table-Secondary table-striped">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Username</th>
+            <th scope="col">Win</th>
+            <th scope="col">Tie</th>
+            <th scope="col">Lose</th>
+            <th scope="col">Win Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in players %}
+        <tr>
+            <th scope="row"> {{ forloop.counter0|add:players.start_index   }}</th>
+            <td >{{ p.user.username }}</th>
+            <td>{{ p.total_win }}</td>
+            <td>{{ p.total_tie }}</td>
+            <td>{{ p.total_lose }}</td>
+            <td>{{ p.win_rate|floatformat:2|intcomma }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<ul class="pagination d-flex justify-content-center ">
+    {% if players.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page ={{ players.previous_page_number }}">Previous</a></li>
+    {% endif %}
+
+    {% for i in players.paginator.page_range %}
+    <li class="page-item {% if players.number == i %}active{% endif %}">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+    </li>
+    {% endfor %}
+
+    {% if players.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ players.next_page_number }}">Next</a></li>
+    {% endif %}
+</ul>
+
+{% endblock %}

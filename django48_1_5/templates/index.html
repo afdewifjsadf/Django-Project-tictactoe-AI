@@ -1,0 +1,760 @@
+{% extends "layouts/base.html" %}
+{% load humanize %}
+
+{% block title %}
+Play Games
+{% endblock %}
+
+
+{% block content %}
+<style>
+    td {
+        border: 0.175rem solid #333;
+        /* height: 210px;
+        width: 210px; */
+        height: 14rem;
+        width: 14rem;
+        text-align: center;
+        vertical-align: center;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        font-size: 5rem;
+    }
+
+
+    table tr:first-child td {
+        border-top: 0;
+    }
+
+    table tr:last-child td {
+        border-bottom: 0;
+    }
+
+    table tr td:first-child {
+        border-left: 0;
+    }
+
+    table tr td:last-child {
+        border-right: 0;
+    }
+</style>
+
+
+<!-- Bot -->
+
+
+<div class="row mt-4">
+    <div class="col-1 d-flex justify-content-center">
+        <img id="botImage" src="" alt="Avatar Logo" style="width:70px;height:70px;" class="rounded-circle shadow-sm">
+    </div>
+    <div class="col-11 p-0">
+        <h4 id="botName" class="card-title">test</h4>
+        <kbd id="botTotalGame" style="background-color: grey;">Total</kbd>
+        <kbd id="botTotalWin" style="background-color: green">Win </kbd>
+        <kbd id="botTotalLose" style="background-color: red">Lose </kbd>
+        <kbd id="botTotalTie" style="background-color: steelblue">Tie </kbd>
+        <kbd id="botWinRate" style="background-color: darkorange">Win Rate %</kbd>
+    </div>
+</div>
+
+
+
+
+
+<div class="row mt-3 ">
+    <div class="col-md-8 d-flex justify-content-center">
+        <table class="">
+            <tr>
+                <td class="cell" id="0"></td>
+                <td class="cell" id="1"></td>
+                <td class="cell" id="2"></td>
+            </tr>
+            <tr>
+                <td class="cell" id="3"></td>
+                <td class="cell" id="4"></td>
+                <td class="cell" id="5"></td>
+            </tr>
+            <tr>
+                <td class="cell" id="6"></td>
+                <td class="cell" id="7"></td>
+                <td class="cell" id="8"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4 d-none" id="historyTab">
+        <h2>Games History</h2>
+        <hr>
+        <div id="list-1" class="list-groupx">
+
+        </div>
+        <div class="buttonEndGame d-grid gap-1 mt-2">
+            <button type="button" onClick="startGame()" class="btn btn-dark btn-block mt-2"><i
+                    class="fas fa-retweet"></i> Restart</button>
+            <button type="button" onClick="newGame()" class="btn btn-dark btn-block mt-2"><i
+                    class="fas fa-plus-circle"></i> New Game</button>
+        </div>
+    </div>
+    <div class="col-md-4 p-1 " id="selectTab">
+        <h2 class="d-flex justify-content-center">Play vs...</h2>
+        <div class="d-flex justify-content-center mt-3 ">
+            <img id="botImageSelect" src="" alt="Avatar Logo" style="width:65px;height:65px;"
+                class="rounded-circle shadow-sm ">
+        </div>
+        <h5 id="botNameSelect" class="d-flex justify-content-center  mt-2 mb-0"></h5>
+        <p id="botDesc" class="text-center  mt-1 mb-4">Center aligned text on all viewport sizes. </p>
+        <div class="container d-grid gap-2 mb-3">
+            <div class=" text-center">
+                <div class="d-grid gap-4 d-md-block mb-1">
+                    <span class="d-flex justify-content-center mb-1">BEGINNER</span>
+
+                    <!-- bot1 -->
+                    <button id="btnBot1" class="btn btn-floating" type="button">
+                        <img id="imgBot1" src="" alt="bot1" style="width:55px;height:55px;"
+                            class="rounded-circle shadow-sm">
+                    </button>
+                    <!-- bot2 -->
+                    <button id="btnBot2" class="btn btn-floating" type="button">
+                        <img id="imgBot2" src="" alt="bot2" style="width:55px;height:55px;"
+                            class="rounded-circle shadow-sm">
+                    </button>
+
+                </div>
+                <div class="d-grid gap-4 d-md-block mb-1">
+                    <span class="d-flex justify-content-center mb-1">INTERMEDIATE</span>
+
+
+                    <!-- bot3 -->
+                    <button id="btnBot3" class="btn btn-floating" type="button">
+                        <img id="imgBot3" src="" alt="bot3" style="width:55px;height:55px;"
+                            class="rounded-circle shadow-sm">
+                    </button>
+
+
+                    <!-- bot4 -->
+                    <button id="btnBot4" class="btn btn-floating" type="button">
+                        <img id="imgBot4" src="" alt="bot4" style="width:55px;height:55px;"
+                            class="rounded-circle shadow-sm">
+                    </button>
+
+
+
+
+
+                </div>
+                <div class="d-grid gap-4 d-md-block ">
+                    <span class="d-flex justify-content-center mb-1">ADVANCED</span>
+                    <!-- bot5 -->
+                    <button id="btnBot5" class="btn btn-floating" type="button">
+                        <img id="imgBot5" src="" alt="bot5" style="width:55px;height:55px;"
+                            class="rounded-circle shadow-sm">
+                    </button>
+
+                    <!-- bot6 -->
+                    <button id="btnBot6" class="btn btn-floating" type="button">
+                        <img id="imgBot6" src="" alt="bot6" style="width:55px;height:55px;"
+                            class="rounded-circle shadow-sm">
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="btn-group d-flex">
+            <input type="radio" class="btn-check" name="options" id="radio1" autocomplete="off">
+            <label class="btn btn-outline-dark" for="radio1">X</label>
+
+            <input type="radio" class="btn-check" name="options" id="radio2" autocomplete="off" checked>
+            <label class="btn btn-outline-dark" for="radio2">O</label>
+        </div>
+
+        <div class="form-check form-switch mt-3">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Computer goes first</label>
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+        </div>
+        <div class="buttonEndGame d-grid gap-1 mt-2">
+            <button type="button" onClick="startGame()" class="btn btn-success btn-block mt-2"><i
+                    class="fas fa-play-circle"></i> Start Game</button>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- User -->
+<div class="row mt-4">
+    <div class="col-1 d-flex justify-content-center">
+        {% if not user.is_authenticated %}
+        <img src="\media\upload\player\profile.png" alt="Avatar Logo" style="width:70px;height:70px;"
+            class="rounded-circle shadow-sm">
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        <img src="{{ player.show_image }}" alt="Avatar Logo" style="width:70px;height:70px;"
+            class="rounded-circle shadow-sm">
+        {% endif %}
+
+    </div>
+    <div class="col-11 p-0">
+        {% if not user.is_authenticated %}
+        <h4 class="card-title">Guest</h4>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        <h4 class="card-title">{{ request.user }}</h4>
+        <kbd style="background-color: grey;">Total {{ player.total_games }}</kbd>
+        <kbd style="background-color: green">Win {{ player.total_win }}</kbd>
+        <kbd style="background-color: red">Lose {{ player.total_lose }}</kbd>
+        <kbd style="background-color: steelblue">Tie {{ player.total_tie }}</kbd>
+        <kbd style="background-color: darkorange">Win Rate {{ player.win_rate|floatformat:2|intcomma }} %</kbd>
+        {% endif %}
+    </div>
+</div>
+
+</div>
+<div class="endgame">
+    <div class="text"></div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script type='text/javascript'>
+    // init
+
+
+
+    var origBoard;
+    var arrEle = [];
+    var huPlayer = 'O';
+    var aiPlayer = 'X';
+    var MAX_DEPTH;
+    const winCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [6, 4, 2]
+    ]
+
+    let history = []
+    let botStartFirst = false;
+    let botSelect = 1;
+    var stepNumber = 0;
+    const cells = document.querySelectorAll('.cell');
+
+    // console.log('{{bots|escapejs}}')
+    var bots = JSON.parse('{{bots|escapejs}}')
+    // console.log(bots[0])
+    selectBot(bots[0])
+
+    for (let x in bots) {
+        // console.log()
+        let btn = '#btn' + bots[x]['name']
+        let img = '#img' + bots[x]['name']
+        document.querySelector(btn).onclick = function () { selectBot(bots[x]); }
+        document.querySelector(img).src = 'media/' + bots[x]['image']
+        // selectBot(bots[x])
+
+    }
+
+
+    function selectBot(bot) {
+        // console.log("this is ", bot)
+        botSelect = bot['id'];
+        document.querySelector('#botName').innerText = bot['name'];
+        document.querySelector('#botNameSelect').innerText = bot['name'];
+        document.querySelector('#botDesc').innerText = bot['description'];
+        document.querySelector('#botImageSelect').src = 'media/' + bot['image'];
+        document.querySelector('#botImage').src = 'media/' + bot['image'];
+        document.querySelector('#botTotalGame').innerText = "Total " + bot['total_games']
+        document.querySelector('#botTotalWin').innerText = "Win " + bot['total_win']
+        document.querySelector('#botTotalLose').innerText = "Lose " + bot['total_lose']
+        document.querySelector('#botTotalTie').innerText = "Tie " + bot['total_tie']
+        document.querySelector('#botWinRate').innerText = "Win Rate " + parseFloat(bot['win_rate']).toFixed(2) + "  %"
+    }
+
+
+    var checkbox = document.querySelector('#flexSwitchCheckDefault');
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            botStartFirst = true;
+            // console.log("check")
+        } else {
+            botStartFirst = false;
+            // console.log("uncheck")
+        }
+    })
+
+    var radio1 = document.querySelector('#radio1');
+    radio1.addEventListener('change', () => {
+        if (radio1.checked) {
+            huPlayer = 'X';
+            aiPlayer = 'O';
+        } else {
+            huPlayer = 'O';
+            aiPlayer = 'X';
+        }
+    })
+
+
+    var radio2 = document.querySelector('#radio2');
+    radio2.addEventListener('change', () => {
+        if (radio2.checked) {
+            huPlayer = 'O';
+            aiPlayer = 'X';
+        } else {
+            huPlayer = 'X';
+            aiPlayer = 'O';
+        }
+    })
+
+
+    function startGame() {
+        // console.log(huPlayer, aiPlayer)
+        // document.querySelector(".endgame").style.display = "none";
+        document.querySelector("#selectTab").classList.add("d-none");
+        document.querySelector("#historyTab").classList.remove("d-none");
+        document.getElementsByTagName('td')
+        origBoard = Array.from(Array(9).keys());
+        history = []
+        history.push(Array.from(origBoard));
+        for (let i = 0; i < arrEle.length; i++) {
+            arrEle[i].remove();
+        }
+        arrEle = []
+        stepNumber = 0
+
+        var btn = document.createElement("button");
+        btn.innerHTML = "Go To Game Star"
+        btn.classList.add("list-group-item");
+        btn.classList.add("list-group-item-action");
+        btn.onclick = function () { setState(0) };
+        arrEle.push(btn);
+        if (botStartFirst) {
+            btn.disabled = true;
+        }
+        // console.log("inarrEle : " + arrEle.length)
+        document.getElementById("list-1").appendChild(btn);
+
+
+
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].innerText = ' ';
+            cells[i].style.cssText = 'cursor:pointer';
+            cells[i].style.removeProperty('background-color');
+            cells[i].addEventListener('click', turnClick, false);
+        }
+
+        if (botStartFirst) {
+            turn(bestSpot(), aiPlayer);
+        }
+
+    }
+
+
+    function newGame() {
+        document.querySelector("#selectTab").classList.remove("d-none");
+        document.querySelector("#historyTab").classList.add("d-none");
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].style.cssText = 'cursor:auto';
+            cells[i].style.backgroundColor = "white";
+            cells[i].innerText = " ";
+            cells[i].removeEventListener('click', turnClick, false);
+        }
+
+
+    }
+
+
+
+
+    function turnClick(square) {
+        if (typeof origBoard[square.target.id] == 'number') {
+            // console.log("histotry before!")
+            history = history.slice(0, stepNumber + 1)
+            for (let i = stepNumber + 1; i < arrEle.length; i++) {
+                arrEle[i].remove()
+            }
+            arrEle = arrEle.slice(0, stepNumber + 1)
+
+            console.log("hu :", square.target.id)
+            turn(square.target.id, huPlayer)
+
+            if (!checkWin(origBoard, huPlayer) && !checkTie()) {
+                turn(bestSpot(), aiPlayer);
+                checkTie();
+            }
+            // addButton(stepNumber, square.target.id)
+
+
+            // console.log(stepNumber + "show ")
+            // console.log("arr" + arrEle.length)
+        }
+
+    }
+
+    function addButton(s, value) {
+        var btn =  document.createElement("button");  //<button> element
+        console.log("addButton :", s, value)
+        if (!botStartFirst) {
+            if (stepNumber % 2 == 0) {
+                btn.innerHTML = "Bot " + stepNumber + " Go to move #" + value;
+            } else {
+                btn.innerHTML = "Your " + stepNumber + " Go to move #" + value;
+                btn.disabled = true;
+            }
+        } else {
+            if (stepNumber % 2 != 0) {
+                btn.innerHTML = "Bot " + stepNumber + " Go to move #" + value;
+            } else {
+                btn.innerHTML = "Your " + stepNumber + " Go to move #" + value;
+                btn.disabled = true;
+            }
+
+        }
+
+        btn.classList.add("list-group-item");
+        btn.classList.add("list-group-item-action");
+        btn.onclick = function () { setState(s) };
+        arrEle.push(btn);
+        document.getElementById("list-1").appendChild(btn);
+    }
+
+    async function turn(squareId, player) {
+        console.log("turn :", squareId, player)
+        origBoard[squareId] = player;
+        // console.log("player" + player)
+        document.getElementById(squareId).innerText = player;
+        history.push(Array.from(origBoard))
+        stepNumber++;
+        addButton(stepNumber, squareId)
+        let gameWon = checkWin(origBoard, player)
+        if (gameWon) gameOver(gameWon)
+    }
+
+
+    function setState(setValue) {
+        stepNumber = setValue;
+        // console.log(setValue, history[setValue])
+        for (let i = 0; i < 9; i++) {
+            if (typeof history[setValue][i] !== 'number')
+                document.getElementById(i).innerText = history[setValue][i];
+            else
+                document.getElementById(i).innerText = '';
+        }
+        // console.log(history)
+        origBoard = history[setValue].slice();
+
+    }
+
+
+
+    function checkWin(board, player) {
+        let plays = board.reduce((a, e, i) =>
+            (e === player) ? a.concat(i) : a, []);
+        // console.log("plays", plays)
+        // console.log(origBoard)
+        let gameWon = null;
+        for (let [index, win] of winCombos.entries()) {
+            // console.log("win", index, win)
+            if (win.every(elem => plays.indexOf(elem) > -1)) {
+                gameWon = { index: index, player: player };
+                break;
+            }
+        }
+        return gameWon;
+    }
+
+    function gameOver(gameWon) {
+        for (let index of winCombos[gameWon.index]) {
+            document.getElementById(index).style.backgroundColor =
+                gameWon.player == huPlayer ? "green" : "red";
+        }
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].removeEventListener('click', turnClick, false);
+        }
+
+        for (let i = 0; i < arrEle.length; i++) {
+            arrEle[i].disabled = true;
+        }
+
+        let status = gameWon.player == huPlayer ? "WIN" : "LOSE";
+        let who = gameWon.player == huPlayer ? "You win!" : "You lose!";
+        let str = gameWon.player == huPlayer ? `<i class="fas fa-crown"></i> WIN!` : `<i class="fas fa-window-close"></i> LOSE!`
+        testAxios(status)
+        declareWinner(str, who);
+    }
+
+    function declareWinner(str, who) {
+        // document.querySelector(".endgame").style.display = "block";
+        // document.querySelector(".endgame .text").innerText = who;
+        // console.log("test declareWiner")
+        document.querySelector(".modal-title").innerHTML = `<h5 class="modal-title" id="exampleModalLongTitle">` + str + `</h5>`;
+        document.querySelector(".modal-body").innerText = who;
+        // $("#exampleModalCenter").val(" Hello...How are you?");
+        var exampleModalPopup = new bootstrap.Modal(document.getElementById("exampleModal"), {});
+        exampleModalPopup.show();
+    }
+
+    function emptySquares() {
+        return origBoard.filter(s => typeof s == 'number');
+    }
+
+    function bestSpot() {
+        if (botSelect == 1) {
+            console.log('bot select : ' + botSelect)
+            console.log("empty" + emptySquares())
+            return emptySquares()[0];
+        } else if (botSelect == 2) {
+            console.log('bot select : ' + botSelect)
+            let items = emptySquares()
+            console.log("empty" + emptySquares())
+            return items[Math.floor(Math.random() * items.length)]
+        } else if (botSelect == 3) {
+            console.log('bot select : ' + botSelect)
+            MAX_DEPTH = 2;
+            return minimaxWithDepth(origBoard, aiPlayer, 0).index;
+        } else if (botSelect == 4) {
+            console.log('bot select : ' + botSelect)
+            MAX_DEPTH = 4;
+            return minimaxWithDepth(origBoard, aiPlayer, 0).index;
+        } else if (botSelect == 5) {
+            console.log('bot select : ' + botSelect)
+            MAX_DEPTH = 6;
+            return minimaxWithDepth(origBoard, aiPlayer, 0).index;
+        } else if (botSelect == 6) {
+            console.log('bot select : ' + botSelect)
+            return minimaxWithAlphaBeta(origBoard, aiPlayer, 0, -10000, 10000).index;
+        }
+
+    }
+
+    function checkTie() {
+        if (emptySquares().length == 0) {
+            for (var i = 0; i < cells.length; i++) {
+                cells[i].style.backgroundColor = "steelblue";
+                cells[i].removeEventListener('click', turnClick, false);
+            }
+
+            for (let i = 0; i < arrEle.length; i++) {
+                arrEle[i].disabled = true;
+            }
+
+            testAxios("TIE")
+            declareWinner(`<i class="fas fa-fish"></i> TIE!`, "Tie Game!")
+            return true;
+        }
+        return false;
+    }
+
+    function minimax(newBoard, player) {
+        var availSpots = emptySquares();
+
+        if (checkWin(newBoard, huPlayer)) {
+            return { score: -10 };
+        } else if (checkWin(newBoard, aiPlayer)) {
+            return { score: 10 };
+        } else if (availSpots.length === 0) {
+            return { score: 0 };
+        }
+        var moves = [];
+        for (var i = 0; i < availSpots.length; i++) {
+            var move = {};
+            move.index = newBoard[availSpots[i]];
+            newBoard[availSpots[i]] = player;
+
+            if (player == aiPlayer) {
+                var result = minimax(newBoard, huPlayer);
+                move.score = result.score;
+            } else {
+                var result = minimax(newBoard, aiPlayer);
+                move.score = result.score;
+            }
+
+            newBoard[availSpots[i]] = move.index;
+
+            moves.push(move);
+        }
+
+        var bestMove;
+        if (player === aiPlayer) {
+            var bestScore = -10000;
+            for (var i = 0; i < moves.length; i++) {
+                if (moves[i].score > bestScore) {
+                    bestScore = moves[i].score;
+                    bestMove = i;
+                }
+            }
+        } else {
+            var bestScore = 10000;
+            for (var i = 0; i < moves.length; i++) {
+                if (moves[i].score < bestScore) {
+                    bestScore = moves[i].score;
+                    bestMove = i;
+                }
+            }
+        }
+
+        return moves[bestMove];
+    }
+
+
+
+
+    function minimaxWithDepth(newBoard, player, depth) {
+        console.log(newBoard, player)
+        var availSpots = emptySquares(newBoard);
+        var moves = [];
+        var bestMove;
+
+        if (checkWin(newBoard, huPlayer)) {
+            return { score: -10 };
+        } else if (checkWin(newBoard, aiPlayer)) {
+            return { score: 10 };
+        } else if (depth >= MAX_DEPTH || availSpots.length === 0) {
+            return { score: 0 };
+        }
+        for (var i = 0; i < availSpots.length; i++) {
+            var move = {};
+            move.index = newBoard[availSpots[i]];
+            newBoard[availSpots[i]] = player;
+            if (player == aiPlayer) {
+                var result = minimax(newBoard, huPlayer, depth + 1);
+                move.score = result.score;
+            } else {
+                var result = minimax(newBoard, aiPlayer, depth + 1);
+                move.score = result.score;
+            }
+
+            newBoard[availSpots[i]] = move.index;
+
+            moves.push(move);
+        }
+
+        if (player === aiPlayer) {
+            var bestScore = -10000;
+            for (var i = 0; i < moves.length; i++) {
+                if (moves[i].score > bestScore) {
+                    bestScore = moves[i].score;
+                    bestMove = i;
+                }
+            }
+        } else {
+            var bestScore = 10000;
+            for (var i = 0; i < moves.length; i++) {
+                if (moves[i].score < bestScore) {
+                    bestScore = moves[i].score;
+                    bestMove = i;
+                }
+            }
+        }
+        return moves[bestMove];
+    }
+
+
+    function minimaxWithAlphaBeta(newBoard, player, depth, alpha, beta) {
+
+        var availSpots = emptySquares(newBoard);
+        var bestMove;
+        var bestMove = {};
+        var move = {};
+        // console.log("new availSpots:" , availSpots)
+        if (checkWin(newBoard, huPlayer)) {
+            return { score: -10 + depth };
+        } else if (checkWin(newBoard, aiPlayer)) {
+            return { score: 10 - depth };
+        } else if (availSpots.length === 0) {
+            return { score: 0 };
+        }
+
+        if (player === aiPlayer) {
+            var bestScore = -10000;
+            for (var i = 0; i < availSpots.length; i++) {
+                newBoard[availSpots[i]] = player;
+                move.index = availSpots[i];
+                var result = minimax(newBoard, huPlayer, depth + 1, alpha, beta);
+                move.score = result.score;
+                newBoard[availSpots[i]] = move.index;
+                if (move.score > bestScore) {
+                    bestScore = move.score;
+                    bestMove.index = move.index;
+                    bestMove.score = bestScore;
+                }
+                alpha = Math.max(alpha, bestScore);
+                if (beta <= alpha) {
+                    break;
+                }
+
+            }
+            return bestMove;
+        } else {
+            var bestScore = 10000;
+            for (var i = 0; i < availSpots.length; i++) {
+                newBoard[availSpots[i]] = player;
+                move.index = availSpots[i];
+                var result = minimax(newBoard, aiPlayer, depth + 1, alpha, beta);
+                move.score = result.score;
+                newBoard[availSpots[i]] = move.index;
+                if (move.score < bestScore) {
+                    bestScore = move.score;
+                    bestMove.index = move.index;
+                    bestMove.score = bestScore;
+                }
+                beta = Math.min(beta, bestScore);
+                if (beta <= alpha) {
+                    break;
+                }
+            }
+            return bestMove;
+        }
+    }
+
+
+
+
+    function testAxios(status) {
+        console.log("{{ user.is_authenticated }}")
+        // if (JSON.parse("{{ user.is_authenticated }}".toLowerCase())) {
+        console.log('test axios')
+        let data = new FormData(); // 2
+
+        console.log(botSelect)
+        data.append("bot", botSelect)
+        data.append("status", status)
+        data.append("Board", origBoard)
+        data.append("player_play", huPlayer)
+        data.append("csrfmiddlewaretoken", '{{csrf_token}}') // 3
+
+        axios.post("crate_game/", data) // 4
+            // .then(res => alert("Form Submitted")) // 5
+            .catch(errors => console.log(errors)) // 6
+
+        // }
+
+    }
+
+
+
+</script>
+
+{% endblock %}

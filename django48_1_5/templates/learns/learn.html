@@ -1,0 +1,173 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+.img-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.tutorial-img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+.gif-img{
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+</style>
+
+<section
+      class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
+    >
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <div>
+            <h1> <span class="text-primary">Login</span> and <span class="text-warning"> Register </span></h1>
+            <p class="lead my-4">
+              การจะทำอะไรต่างๆในเว็บของเรานั้น ผู้ใช้ต้องเป็นสมาชิคก่อน
+              โดยการ<span class="text-warning"> Register </span>และ<span class="text-primary"> Login </span>
+              เข้าเว็บของเรานั้นสามารถทำได้ตามขั้นตอนข้างล่างนี้
+            </p>
+          </div>
+          <img class="gif-img" src="/media/upload/learn/learn_header.gif" alt="" />
+        </div>
+      </div>
+</section>
+
+<section class="p-5">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-md">
+            <div class="card bg-secondary text-light">
+            <div class="card-body text-center">
+              <div class="h1 mb-3">
+                <img class="tutorial-img" src="/media/upload/learn/sign_up.gif" alt="" />
+              </div>
+              <h3 class="card-title mb-3 text-warning">Register</h3>
+              <p class="card-text">
+                การจะRegisterนั้น
+                ต้องใส่อะไรบ้าง
+              </p>
+              <a href="#learn-register" class="btn btn-dark">Read More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md">
+            <div class="card bg-dark text-light">
+            <div class="card-body text-center">
+              <div class="h1 mb-3">
+                <img class="tutorial-img" src="/media/upload/learn/sign_in.gif" alt="" />
+              </div>
+              <h3 class="card-title mb-3 text-primary">Login</h3>
+              <p class="card-text">
+                การจะLoginนั้น
+                ต้องใส่อะไรบ้าง
+              </p>
+              <a href="#learn-login" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+  </section>
+
+  <section id="learn-register" class="p-5 bg-light text-dark">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-md">
+          <img class="tutorial-img" src="/media/upload/learn/register_in.png" alt="" />
+        </div>
+        <div class="col-md p-5">
+          <h2> <span class="text-warning"> Register </span></h2>
+          <p class="lead">
+            การจะเข้าไปดู Profile และประวัติการเล่นของเรานั้นเราจะต้องทำการ Login ก่อน ซึ่งถ้าเรายังไม่มี ID สามารถ Register ได้ที่ปุ่มนี้
+          </p>
+          <a href="{% url 'myapp:register' %}" class="btn btn-dark mt-3">
+            <i class="fas fa-user-plus"></i> Sign Up
+          </a>
+          <div class="accordion accordion-flush mt-3" id="advice">
+            <!-- Item 1 -->
+            <div class="accordion-item ">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-dark text-warning"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#advice-one"
+                >
+                  ต้องใส่อะไรบ้าง?
+                </button>
+              </h2>
+              <div
+                id="advice-one"
+                class="accordion-collapse collapse"
+                data-bs-parent="#advice"
+              >
+                <div class="accordion-body bg-secondary text-light">
+                    <p class="" style="font-size: 20px; text-indent:30px">1.ใส่user nameที่ตัวเองคิด</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">2.ใส่ Email ที่ต้องการใช้ในการสมัคร</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">3.ตั้ง Password</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">4.กฎที่ใช้ในการตั้ง Password</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">5.ใส่ Password อีกครั้ง</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">6.กดยืนยันที่ปุ่มนี้</p>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section id="learn-login" class="p-5 bg-dark text-light">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-md">
+          <img class="tutorial-img" src="/media/upload/learn/login_learn.png" alt="" />
+        </div>
+        <div class="col-md p-5">
+          <h2><span class="text-primary">Login</span></h2>
+          <p class="lead">
+            หลังจากทำการregisterไปแล้ว สามารถกดloginได้ที่ปุ่มนี้
+          </p>
+          <a href="{% url 'myapp:login' %}" class="btn btn-light mt-3">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </a>
+          <div class="accordion accordion-flush mt-3" id="advice1">
+            <!-- Item 1 -->
+            <div class="accordion-item ">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-primary text-light"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#advice1-one"
+                >
+                  ต้องใส่อะไรบ้าง?
+                </button>
+              </h2>
+              <div
+                id="advice1-one"
+                class="accordion-collapse collapse"
+                data-bs-parent="#advice1"
+              >
+                <div class="accordion-body bg-secondary text-light">
+                    <p class="" style="font-size: 20px; text-indent:30px">1.ใส่user nameที่เราใช้ตอน sign up</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">2.ใส่ password ที่เราใส่ไปตอน sign up</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">3.กดยืนยันที่ปุ่มนี้</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

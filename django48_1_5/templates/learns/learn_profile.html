@@ -1,0 +1,140 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<style>
+  html {
+  scroll-behavior: smooth;
+}
+
+.img-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.tutorial-img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+.gif-img{
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.card-img{
+  width: 100%;
+  min-width: 500px;
+  height: auto;
+}
+</style>
+
+<section
+      class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
+    >
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <div>
+            <h1> <span class="text-primary">Profile</span></h1>
+            <p class="lead my-4">
+              เมื่อทำการ<span class="text-warning"> Register </span>และ<span class="text-primary"> Login </span>
+              เข้ามาในเว็บของเราแล้ว บนมุมขวาบนจะขึ้นเป็นรูป <span class="text-primary">Profile</span>
+              ซึ่งเอาไว้ดูข้อมูลต่างๆของเรา
+            </p>
+          </div>
+          <img class="gif-img" src="/media/upload/learn/profile_header.gif" alt="" />
+        </div>
+      </div>
+</section>
+
+<section class="p-5">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-md">
+          <div class="card bg-dark text-light">
+            <div class="card-body text-center">
+              <div class="h1 mb-3">
+                <img class="tutorial-img" src="/media/upload/learn/profile.gif" alt="" />
+              </div>
+              <h3 class="card-title mb-3 text-primary">Profile</span></h3>
+              <p class="card-text">
+                รายละเอียดของหน้า Profile
+              </p>
+              <a href="#learn-profile" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="card bg-secondary text-light">
+            <div class="card-body text-center">
+              <div class="h1 mb-3">
+                <img class="tutorial-img" src="/media/upload/learn/account_setting.gif" alt="" />
+              </div>
+              <h3 class="card-title mb-3 text-warning">Account Setting</h3>
+              <p class="card-text">
+                หน้าแก้ไข Profile
+              </p>
+              <a href="#learn-account" class="btn btn-light">Read More</a>
+            </div>
+          </div>
+        </div>
+  </section>
+
+  <section id="learn-profile" class="p-5 bg-light text-dark">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-md">
+            <img class="tutorial-img" src="/media/upload/learn/profile_learn.png" alt="" />
+        </div>
+        <div class="col-md p-5">
+          <h2><span class="text-primary">Profile</span></h2>
+          <p class="lead">
+            ในหน้า Profile นั้นจะมีบอกว่าเราเล่นมาแล้วกี่ตา ชนะกี่ครั้ง แพ้กี่ครั้ง เสมอกี่ครั้ง และมีอัตราการชนะกี่เปอร์เซ็นต์
+            นอกจากนี้ ส่วนข้างล่างของ Profile จะมีบอกประวัติการเล่นด้วยว่าเราเล่นกับบอทอะไร ผลออกมาแบบไน และเวลาไหน
+          </p>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section id="learn-account" class="p-5 bg-dark text-light">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-md">
+          <img class="tutorial-img" src="/media/upload/learn/account_setting.png" alt="" />
+        </div>
+        <div class="col-md p-5">
+          <h2><span class="text-warning">Account Setting</span></h2>
+          <p class="lead">
+            ในหน้านี้เราสามารถเปลี่ยน Username,Email,และรูปโปรไฟล์ของเราได้
+          </p>
+          <div class="accordion accordion-flush mt-3" id="function">
+            <!-- Item 1 -->
+            <div class="accordion-item ">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-warning text-dark"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#function-one"
+                >
+                  Function
+                </button>
+              </h2>
+              <div
+                id="function-one"
+                class="accordion-collapse collapse"
+                data-bs-parent="#function"
+              >
+                <div class="accordion-body bg-secondary text-light">
+                    <p class="" style="font-size: 20px; text-indent:30px">1.สามารถเปลี่ยนรูปโปรไฟล์ได้</p>
+                    <img class="tutorial-img" src="/media/upload/learn/account_setting_1.gif" alt="" />
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

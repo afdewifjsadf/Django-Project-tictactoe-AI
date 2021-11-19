@@ -1,0 +1,81 @@
+{% extends "layouts/base.html" %}
+{% load humanize %}
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="card mb-3 mt-4 p-1">
+    <div class="row g-0">
+        <div class="col-md-2 d-flex justify-content-center align-items-center">
+            <img id="botImage"
+                src="{{ player.show_image  }}"
+                alt="Avatar Logo" style="width:80px;height:80px;" class="rounded-circle z-depth-2">
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h4 class="card-title">{{ request.user }}</h4>
+                    <kbd style="background-color: grey;">Total {{ player.total_games }}</kbd> 
+                    <kbd style="background-color: green">Win {{ player.total_win }}</kbd> 
+                    <kbd style="background-color: red">Lose {{ player.total_lose }}</kbd> 
+                    <kbd style="background-color: steelblue">Tie {{ player.total_tie }}</kbd>
+                    <kbd style="background-color: darkorange">Win Rate {{ player.win_rate|floatformat:2|intcomma }} %</kbd> 
+            </div>
+        </div>
+    </div>
+</div>
+  
+<table class="table table-Secondary table-striped">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Bot AI</th>
+            <th scope="col">Level</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for g in games %}
+        <tr>
+            <th scope="row">{{ forloop.counter0|add:games.start_index  }}</th>
+            <td>{{ g.bot.name }}</td>
+            <td>{{ g.bot.level }}</td>
+            {% if g.status == "WIN" %}
+            <td><kbd style="background-color: green">{{ g.status }}</kbd></td>
+            {% endif %}
+            {% if g.status == "LOSE" %}
+            <td><kbd style="background-color: red">{{ g.status }}</kbd> </td>
+            {% endif %}
+            {% if g.status == "TIE" %}
+            <td><kbd style="background-color: steelblue">{{ g.status }}</kbd> </td>
+            {% endif %}
+            <td>{{ g.created }}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+<ul class="pagination d-flex justify-content-center ">
+    {% if games.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page ={{ games.previous_page_number }}">Previous</a></li>
+    {% endif %}
+
+    {% for i in games.paginator.page_range %}
+    <li class="page-item {% if games.number == i %}active{% endif %}">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+    </li>
+    {% endfor %}
+
+    {% if games.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ games.next_page_number }}">Next</a></li>
+    {% endif %}
+</ul>
+
+{% endblock %}

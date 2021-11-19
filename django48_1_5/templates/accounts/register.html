@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Resigter
+{% endblock %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-lg-6 offset-lg-3">
+        <h1 class="">Resigter</h1>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Register Account</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

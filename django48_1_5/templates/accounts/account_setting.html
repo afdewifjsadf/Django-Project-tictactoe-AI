@@ -1,0 +1,25 @@
+{% extends "layouts/base.html" %}
+
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Login Page!
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row mt-4">
+    <div class="col-lg-6 offset-lg-3">
+        <h1 class="mt-4">Account Settings</h1>
+        <form method="post" novalidate enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form_user|crispy}}
+            {{form_playerImage|crispy}}
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

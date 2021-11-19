@@ -1,0 +1,268 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<style>
+  html {
+  scroll-behavior: smooth;
+}
+
+.img-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.tutorial-img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+.gif-img{
+  width: 100%;
+  max-width: 800px;
+  height: 250px;
+}
+
+.card-img{
+  width: 100%;
+  min-width: 500px;
+  height: auto;
+}
+</style>
+
+<section
+      class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
+    >
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <div>
+            <h1> <span class="text-primary">Tic</span> Tac <span class="text-warning"> Toe </span></h1>
+            <p class="lead my-4">
+              การจะทำอะไรต่างๆในเว็บของเรานั้น ผู้ใช้ต้องเป็นสมาชิกก่อน
+              โดยการ<span class="text-warning"> Register </span>และ<span class="text-primary"> Login </span>
+              เข้าเว็บของเรานั้นสามารถทำได้ตามขั้นตอนข้างล่างนี้
+            </p>
+          </div>
+          <img class="gif-img" src="/media/upload/learn/XO.gif" alt="" />
+        </div>
+      </div>
+</section>
+
+<section class="p-5">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-md">
+          <div class="card bg-dark text-light">
+            <div class="card-body text-center">
+              <div class="h1 mb-3">
+                <img class="gif-img" src="/media/upload/learn/XO_game.gif" alt="" />
+              </div>
+              <h3 class="card-title mb-3 text-primary">Tic <span class="text-light">Tac</spam> <span class="text-warning">Toe</span></h3>
+              <p class="card-text">
+                กฎต่างๆ และวิธีการเอาชนะของเกมส์
+              </p>
+              <a href="#learn-ttt" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="card bg-secondary text-light">
+            <div class="card-body text-center">
+              <div class="h1 mb-3">
+                <img class="gif-img" src="/media/upload/learn/AI_tictactoe.gif" alt="" />
+              </div>
+              <h3 class="card-title mb-3 text-light">AI ในเว็บของเรา</h3>
+              <p class="card-text">
+                AI เรามีระดับอะไรบ้างและเก่งขนาดไหน
+              </p>
+              <a href="#learn-ai" class="btn btn-light">Read More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md">
+            <div class="card bg-dark text-light">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <img class="gif-img" src="/media/upload/learn/history.gif" alt="" />
+                </div>
+                <h3 class="card-title mb-3 text-warning">History</h3>
+                <p class="card-text">
+                  การใช้งานแถบ history
+                </p>
+                <a href="#learn-history" class="btn btn-warning">Read More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="card bg-secondary text-light">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <img class="gif-img" src="/media/upload/learn/leaderboard.gif" alt="" />
+                </div>
+                <h3 class="card-title mb-3 text-warning">Leader Board</h3>
+                <p class="card-text">
+                  การใช้งาน LeaderBoard
+                </p>
+                <a href="#learn-Leaderboard" class="btn btn-warning">Read More</a>
+              </div>
+            </div>
+          </div>
+  </section>
+
+  <section id="learn-ttt" class="p-5 bg-light text-dark">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-md">
+            <img class="tutorial-img" src="/media/upload/learn/tictactoe.gif" alt="" />
+        </div>
+        <div class="col-md p-5">
+          <h2><span class="text-primary">Tic</span> Tac <span class="text-warning"> Toe </span></h2>
+          <p class="lead">
+            Game tic tac toe หรือ Xs and Os เป็นเกมกระดานชนิดหนึ่ง โดยวิธีการเล่นคือผู้เล่นแต่ละฝ่ายจะผลัดกันเขียนรูปวงกลม (O) และกากบาท (X) โดยเราจะสามารถเลือกได้ว่าจะให้ฝั่งไหนเริ่มก่อน 
+            คนที่เล่นก่อนจะเขียนเครื่องหมาย O (หรือ X ก็ได้แล้วแต่จะกำหนด) จากนั้นอีกคนหนึ่งก็จะเขียนเครื่องหมายตรงข้าม โดยที่ห้ามเขียนเครื่องหมายของตัวเองซ้ำช่องที่มีคนเขียนก่อนหน้านี้ 
+            จากนั้นทั้ง 2 ฝ่ายก็จะผลัดกันเขียนเครื่องหมายของตัวเองจนเต็มกระดาน 3×3
+          </p>
+          <div class="accordion accordion-flush mt-3" id="rule">
+            <!-- Item 1 -->
+            <div class="accordion-item ">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-dark text-warning"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#rule-one"
+                >
+                  วิธีการชนะ
+                </button>
+              </h2>
+              <div
+                id="rule-one"
+                class="accordion-collapse collapse"
+                data-bs-parent="#rule"
+              >
+                <div class="accordion-body bg-secondary text-light">
+                    <p class="" style="font-size: 20px; text-indent:30px">เกมส์นี้มีวิธีการชนะได้ 3วิธี คือ</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">1.เครื่องหมายของตัวเองเรียงเป็นแนวตั้ง</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">2.เครื่องหมายของตัวเองเรียงเป็นแนวนอน</p>
+                    <p class="" style="font-size: 20px; text-indent:30px">3.เครื่องหมายของตัวเองเรียงเป็นแนวทแยง</p>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section id="learn-ai" class="p-5 bg-dark text-light">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-md">
+          <img class="tutorial-img" src="/media/upload/learn/difficult.png" alt="" />
+        </div>
+        <div class="col-md p-5">
+          <h2>AI</h2>
+          <p class="lead">
+            ในเว็บของเรานั้น จะเป็นการสู้กับ AI แทนที่จะสู้กับคนด้วยกันเอง โดย AI นั้นจะถูกแบ่งตามระดับความเก่งซึ่งมีอยู่3ระดับ
+          </p>
+          <div class="accordion accordion-flush mt-3" id="difficult">
+            <!-- Item 1 -->
+            <div class="accordion-item ">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-primary text-light"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#difficult-one"
+                >
+                  ระดับความเก่งของ AI
+                </button>
+              </h2>
+              <div
+                id="difficult-one"
+                class="accordion-collapse collapse"
+                data-bs-parent="#difficult"
+              >
+                <div class="accordion-body bg-secondary text-light">
+                    <p class="" style="font-size: 20px; text-indent:30px">
+                        1.BEGINNER: ในระดับนี้ AI จะมีความเก่งหมือนคนที่ไม่เคยเล่น tic tac toe มาก่อน
+                        จะทำการลงแบบแปลกๆ หรือปล่อยให้เราชนะไปเลยก็มี
+                    </p>
+                    <p class="" style="font-size: 20px; text-indent:30px">
+                        2.INTERMEDIATE: เป็น AI ที่มีความฉลาดขึ้นมาบ้าง แต่ก็ยังไม่เก่งพอกับคนที่เล่น tic tac toe
+                        เก่งจริงๆ
+                    </p>
+                    <p class="" style="font-size: 20px; text-indent:30px">
+                        3.ADVANCED: AI ที่มีความสามารถมาก ไม่ว่าคนจะเล่นเก่งแค่ไหนก็จะไม่แพ้อย่างมากคนก็ทำได้แค่เสมอ
+                    </p>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learn-history" class="p-5 bg-light text-dark">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-md">
+            <img class="tutorial-img" src="/media/upload/learn/Game_history.png" alt="" />
+        </div>
+        <div class="col-md p-5">
+          <h2><span class="text-warning">History bar</span></h2>
+          <p class="lead">
+            ในการเล่นเกมส์ tic tac toe นั้นข้างขวามือของเราจะมี History bar อยู่ ซึ่งมันจะคอยทำหน้าที่บอกว่าเราลงช่องไหน
+            ไปแล้วบางในตานั้นๆ และยังมี function ต่างๆอีกด้วย
+          </p>
+          <div class="accordion accordion-flush mt-3" id="function">
+            <!-- Item 1 -->
+            <div class="accordion-item ">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-warning text-dark"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#function-one"
+                >
+                  Function ต่างๆ
+                </button>
+              </h2>
+              <div
+                id="function-one"
+                class="accordion-collapse collapse"
+                data-bs-parent="#function"
+              >
+                <div class="accordion-body bg-secondary text-light">
+                    <p class="" style="font-size: 20px; text-indent:30px">1.สามารถกดไปยังตานั้นๆ เพื่อย้อนกระดานกลับไปยังตานั้นได้</p>
+                    <img class="tutorial-img" src="/media/upload/learn/history_reverse.gif" alt="" />
+                    <p class="" style="font-size: 20px; text-indent:30px">2.สามารถกดปุ่ม Restart เพื่อเริ่มเกมส์ใหม่กับ AI ตัวเดิมได้</p>
+                    <img class="tutorial-img" src="/media/upload/learn/restart.gif" alt="" />
+                    <p class="" style="font-size: 20px; text-indent:30px">3.สามารถกดปุ่ม New Game เพื่อกลับไปเลือก AI ตัวใหม่ได้</p>
+                    <img class="tutorial-img" src="/media/upload/learn/Newgame.gif" alt="" />
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section id="learn-Leaderboard" class="p-5 bg-dark text-light">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-md">
+          <img class="tutorial-img" src="/media/upload/learn/leaderboard.png" alt="" />
+        </div>
+        <div class="col-md p-5">
+          <h2><span class="text-warning">LeaderBoard</span></h2>
+          <p class="lead">
+            LeaderBoard นั้นจะคอยบอกว่าอันดับในเว็บของเรานั้นมีใครบ้าง โดยคนที่มีอัตราชนะมากที่สุดจะอยู่อันดับแรกๆ
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

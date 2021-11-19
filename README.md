@@ -8,7 +8,8 @@
 8. Run server `python manage.py runserver`
 
 ## reset-password setting
-add Email and Password, Email is lesssecure -> https://myaccount.google.com/lesssecureapps
+add Email and Password at `.\django-tictactoe-AI\django48_1_5\django48_1_5\settings.py`,
+Email is lesssecure -> https://myaccount.google.com/lesssecureapps
 ```
 EMAIL_HOST_USER = '** eamil **'
 EMAIL_HOST_PASSWORD = '** password email **'

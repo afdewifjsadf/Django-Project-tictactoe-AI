@@ -7,3 +7,4 @@
 6. Change directory `cd django48_1_5`
 8. Run server `python manage.py runserver`
 
+## reset-password setting
